@@ -1,0 +1,33 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "article",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Captured",
+        "spans": []
+      }
+    ],
+    "publishDate": "2013-08-12",
+    "featuredImage": {
+      "dimensions": {
+        "width": 2000,
+        "height": 1500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1544731612-de7f96afe55f"
+    },
+    "slices": []
+  }
+}
