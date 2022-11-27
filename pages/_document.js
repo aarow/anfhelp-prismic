@@ -16,6 +16,11 @@ export default function Document() {
       <body className="overflow-x-hidden antialiased">
         <Main />
         <NextScript />
+        <script
+          async
+          defer
+          src="https://static.cdn.prismic.io/prismic.js?new=true&repo=anfhelp-prismic"
+        ></script>
       </body>
     </Html>
   );
