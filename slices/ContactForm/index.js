@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { Bounded } from "../../components/Bounded";
 
 const Field = ({ label, children }) => {
@@ -15,6 +17,7 @@ const InputField = ({
   type = "text",
   placeholder,
   required = true,
+  onChange = () => {},
 }) => {
   return (
     <Field label={label}>
@@ -24,6 +27,7 @@ const InputField = ({
         required={required}
         placeholder={placeholder}
         className="w-full rounded-none border-b border-slate-200 py-3 pr-7 pl-3 text-slate-800 placeholder-slate-400"
+        onChange={onChange}
       />
     </Field>
   );
@@ -43,14 +47,38 @@ const TextareaField = ({ label, name, placeholder, required = true }) => {
 };
 
 const ContactForm = () => {
+  const [submitterName, setSubmitterName] = useState("");
+  const router = useRouter();
+  const confirmationScreenVisible =
+    router.query?.success && router.query.success === "true";
   return (
     <Bounded as="section" size="small">
       <form
-        action="/api/contact"
-        method="post"
+        method="POST"
+        name="contact-form"
+        action="contact/?success=true"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
         className="grid grid-cols-1 gap-6"
       >
-        <InputField label="Name" name="name" placeholder="Jane Doe" />
+        <input
+          type="hidden"
+          name="subject"
+          value={`You've got mail from ${submitterName}`}
+        />
+        <input type="hidden" name="form-name" value="contact-form" />
+        <p hidden>
+          <label>
+            Don't fill this out: <input name="bot-field" />
+          </label>
+        </p>
+
+        <InputField
+          label="Name"
+          name="name"
+          placeholder="Jane Doe"
+          onChange={(e) => setSubmitterName(e.target.value)}
+        />
         <InputField
           label="Email Address"
           name="email"
@@ -72,6 +100,7 @@ const ContactForm = () => {
           </span>
         </button>
       </form>
+      {confirmationScreenVisible && `asdf`}
     </Bounded>
   );
 };
